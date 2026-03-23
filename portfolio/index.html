@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Joe Canter | Portfolio</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Inter+Tight:wght@600;700;800&display=swap" rel="stylesheet">
+
+<<<<<<< HEAD
+  <link rel="stylesheet" href="styles/styles.css">
+=======
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #f6f3ee;
+      --surface: #ffffff;
+      --text: #1c1c1c;
+      --muted: #6b645c;
+      --soft: #7a6f63;
+      --chip: #efe7dc;
+      --accent: #7a5c43;
+      --shadow: 0 14px 30px rgba(0, 0, 0, 0.06);
+      --shadow-hover: 0 20px 40px rgba(0, 0, 0, 0.09);
+      --radius-lg: 28px;
+      --radius-md: 22px;
+      --radius-sm: 16px;
+      --section-space: 72px;
+      --hero-top: 96px;
+      --hero-bottom: 72px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Inter", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(1100px, calc(100% - 64px));
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: var(--hero-top) 0 var(--hero-bottom);
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 64px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 13px;
+      letter-spacing: 1.8px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+      color: var(--soft);
+      font-weight: 700;
+    }
+
+    .hero h1 {
+      font-family: "Inter Tight", Arial, sans-serif;
+      font-size: clamp(42px, 6vw, 82px);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -1.5px;
+      margin: 0 0 18px;
+      max-width: 760px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 520px;
+      margin: 0 0 28px;
+      color: #4c4740;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 22px;
+      border-radius: 999px;
+      font-weight: 700;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--text);
+      background: transparent;
+    }
+
+    .btn-secondary:hover {
+      background: #e8e2d8;
+    }
+
+    .portrait-wrap {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .portrait-img {
+      width: min(360px, 85vw);
+      height: 420px;
+      object-fit: cover;
+      object-position: center 30%;
+      border-radius: 36px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+    }
+
+    section {
+      padding: var(--section-space) 0;
+    }
+
+    .section-heading {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 24px;
+      margin-bottom: 28px;
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      font-family: "Inter Tight", Arial, sans-serif;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1;
+      letter-spacing: -0.8px;
+    }
+
+    .section-heading p {
+      margin: 0;
+      max-width: 520px;
+      color: #5d564d;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 22px;
+    }
+
+    .project-card {
+      background: var(--surface);
+      padding: 28px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .project-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    .project-thumb {
+      height: 180px;
+      border-radius: var(--radius-sm);
+      margin-bottom: 18px;
+      background: linear-gradient(135deg, #e6ddd2, var(--accent));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      color: rgba(31, 31, 31, 0.72);
+      text-align: center;
+      padding: 20px;
+      font-size: 24px;
+      letter-spacing: -0.3px;
+    }
+
+    .project-card h3 {
+      margin: 0 0 10px;
+      font-family: "Inter Tight", Arial, sans-serif;
+      font-size: 24px;
+      line-height: 1.15;
+      letter-spacing: -0.4px;
+    }
+
+    .project-card p {
+      margin: 0 0 16px;
+      color: var(--muted);
+    }
+
+    .project-link {
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 22px;
+      align-items: start;
+    }
+
+    .about-card {
+      background: var(--surface);
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: var(--shadow);
+    }
+
+    .about-card h3 {
+      margin: 0 0 12px;
+      font-family: "Inter Tight", Arial, sans-serif;
+      font-size: 26px;
+      line-height: 1.1;
+      letter-spacing: -0.5px;
+    }
+
+    .about-card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .skill {
+      padding: 10px 14px;
+      background: var(--chip);
+      border-radius: 999px;
+      font-size: 14px;
+    }
+
+    .cta {
+      padding-top: 72px;
+      padding-bottom: 96px;
+      text-align: center;
+    }
+
+    .cta-box {
+      background: var(--text);
+      color: white;
+      padding: 52px 32px;
+      border-radius: var(--radius-lg);
+    }
+
+    .cta-box h2 {
+      margin: 0 0 12px;
+      font-family: "Inter Tight", Arial, sans-serif;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1;
+      letter-spacing: -0.8px;
+    }
+
+    .cta-box p {
+      margin: 0 0 24px;
+      color: rgba(255, 255, 255, 0.82);
+      max-width: 620px;
+      margin-inline: auto;
+    }
+
+    .cta-box .btn-secondary {
+      border-color: white;
+      color: white;
+    }
+
+    .cta-box .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    @media (max-width: 900px) {
+      :root {
+        --hero-top: 72px;
+        --hero-bottom: 56px;
+        --section-space: 60px;
+      }
+
+      .hero-inner,
+      .about,
+      .project-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-inner {
+        gap: 40px;
+      }
+
+      .section-heading {
+        display: block;
+      }
+
+      .section-heading p {
+        margin-top: 12px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: min(1100px, calc(100% - 40px));
+      }
+
+      .hero h1 {
+        font-size: 48px;
+      }
+
+      .hero p {
+        font-size: 16px;
+      }
+
+      .project-card,
+      .about-card,
+      .cta-box {
+        padding: 22px;
+      }
+
+      .portrait-img {
+        height: 380px;
+      }
+
+      .project-thumb {
+        height: 150px;
+        font-size: 22px;
+      }
+    }
+  </style>
+>>>>>>> 6efc12400191debcfdc819896f54494002dccde7
+</head>
+<body>
+
+  <header class="hero">
+    <div class="container hero-inner">
+      <div>
+        <span class="eyebrow">Creative leadership • marketing • storytelling</span>
+        <h1>Creative work that makes ideas clearer and more compelling.</h1>
+        <p>
+          I build visual stories, branded content, and marketing pieces that help people understand, trust, and connect with what a company or project is trying to say.
+        </p>
+        <div class="hero-actions">
+          <a href="#work" class="btn btn-primary">View Work</a>
+          <a href="#about" class="btn btn-secondary">About Me</a>
+        </div>
+      </div>
+
+      <div class="portrait-wrap">
+<<<<<<< HEAD
+        <img src="assets/images/headshot.jpg" class="portrait-img" alt="Joe Canter headshot">
+=======
+        <img src="your-headshot.jpg" class="portrait-img" alt="Joe Canter headshot">
+>>>>>>> 6efc12400191debcfdc819896f54494002dccde7
+      </div>
+    </div>
+  </header>
+
+  <section id="work">
+    <div class="container">
+      <div class="section-heading">
+        <h2>Selected Work</h2>
+        <p>
+          Four areas that represent my work across SaaS, technology, freelance creative, and data driven problem solving.
+        </p>
+      </div>
+
+      <div class="project-grid">
+        <a href="#" class="project-card">
+          <div class="project-thumb">Quore</div>
+          <h3>Quore</h3>
+          <p>
+            Led creative and video work for a hospitality SaaS brand, producing marketing, educational, and customer story content designed to make the product easier to understand and more valuable to the audience.
+          </p>
+          <span class="project-link">View Project</span>
+        </a>
+
+        <a href="#" class="project-card">
+          <div class="project-thumb">GDT</div>
+          <h3>GDT</h3>
+          <p>
+            Marketing and video content for a technology company, focused on explaining services clearly and creating stronger communication for business audiences.
+          </p>
+          <span class="project-link">View Project</span>
+        </a>
+
+        <a href="#" class="project-card">
+          <div class="project-thumb">Misc.</div>
+          <h3>Misc.</h3>
+          <p>
+            Freelance and independent creative work across different industries, including branded pieces, promotional content, and storytelling projects with varied goals and styles.
+          </p>
+          <span class="project-link">View Project</span>
+        </a>
+
+        <a href="#" class="project-card">
+          <div class="project-thumb">Data Projects</div>
+          <h3>Data Projects</h3>
+          <p>
+            An emerging area of work focused on analysis, structure, and clearer decision making through data. This section can grow as new projects and case studies are developed.
+          </p>
+          <span class="project-link">View Project</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="container about">
+      <div class="about-card">
+        <h3>About</h3>
+        <p>
+          I work across creative leadership, marketing, video production, and visual storytelling. My background includes SaaS, technology, freelance client work, and growing experience in data focused projects.
+        </p>
+      </div>
+
+      <div class="about-card">
+        <h3>Focus Areas</h3>
+        <p>
+          My work sits at the intersection of strategy, creativity, communication, and execution.
+        </p>
+        <div class="skills">
+          <span class="skill">Creative Direction</span>
+          <span class="skill">Brand Storytelling</span>
+          <span class="skill">Marketing Content</span>
+          <span class="skill">Video Production</span>
+          <span class="skill">Motion Graphics</span>
+          <span class="skill">Data Analysis</span>
+          <span class="skill">Visual Communication</span>
+          <span class="skill">Leadership</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Let’s build something sharp.</h2>
+        <p>
+          Replace this with your email, contact form, or whatever action you want people to take.
+        </p>
+        <a href="#" class="btn btn-secondary">Get In Touch</a>
+      </div>
+    </div>
+  </section>
+
+<<<<<<< HEAD
+  <script src="scripts/main.js"></script>
+=======
+>>>>>>> 6efc12400191debcfdc819896f54494002dccde7
+</body>
+</html>
