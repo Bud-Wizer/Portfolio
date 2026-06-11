@@ -9,15 +9,15 @@ Check off tasks as you complete them. Add notes as you go.
 > Goal: Make sure the existing site is set up correctly before building anything new.
 
 - [ ] Confirm repo is named `yourusername.github.io`
-- [ ] Confirm GitHub Pages is enabled (Settings → Pages)
-- [ ] Confirm the correct branch (`main`) is being published
+- [x] Confirm GitHub Pages is enabled (Settings → Pages)
+- [x] Confirm the correct branch (`main`) is being published
 - [ ] Review current file and folder structure
-- [ ] Verify live site loads at `https://yourusername.github.io`
-- [ ] Install VS Code
+- [x] Verify live site loads at `https://yourusername.github.io`
+- [x] Install VS Code
 - [ ] Install VS Code extension: **Live Server**
 - [ ] Install VS Code extension: **Prettier**
-- [ ] Clone repo to local machine (download it to VS Code)
-- [ ] Make a small test edit locally and push it to GitHub
+- [x] Clone repo to local machine (download it to VS Code)
+- [x] Make a small test edit locally and push it to GitHub
 
 **Notes:**
 
