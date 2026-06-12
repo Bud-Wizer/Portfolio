@@ -8,14 +8,14 @@ Check off tasks as you complete them. Add notes as you go.
 ## Phase 1 — Foundation Audit
 > Goal: Make sure the existing site is set up correctly before building anything new.
 
-- [ ] Confirm repo is named `yourusername.github.io`
+- [x] Confirm repo is named `yourusername.github.io`
 - [x] Confirm GitHub Pages is enabled (Settings → Pages)
 - [x] Confirm the correct branch (`main`) is being published
-- [ ] Review current file and folder structure
+- [x] Review current file and folder structure
 - [x] Verify live site loads at `https://yourusername.github.io`
 - [x] Install VS Code
-- [ ] Install VS Code extension: **Live Server**
-- [ ] Install VS Code extension: **Prettier**
+- [x] Install VS Code extension: **Live Server**
+- [x] Install VS Code extension: **Prettier**
 - [x] Clone repo to local machine (download it to VS Code)
 - [x] Make a small test edit locally and push it to GitHub
 
