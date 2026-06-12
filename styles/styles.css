@@ -154,7 +154,7 @@ section {
   font-size: 18px;
   max-width: 520px;
   margin: 0 0 28px;
-  color: #4c4740;
+  color: var(--muted);
 }
 
 .hero-actions {
@@ -187,7 +187,7 @@ section {
 }
 
 .btn-secondary:hover {
-  background: #e8e2d8;
+  color: var(--muted);
 }
 
 /* PORTRAIT */
@@ -226,7 +226,7 @@ section {
 .section-heading p {
   margin: 0;
   max-width: 520px;
-  color: #5d564d;
+  color: var(--muted);
 }
 
 /* PROJECT GRID */
