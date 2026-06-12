@@ -47,7 +47,7 @@ Check off tasks as you complete them. Add notes as you go.
 ## Phase 2.1 — More Specific Clean Up
 > Goal: html and styles css clean up.
 
-- [ ] NEW HERE! Add nav bar
+- [x] NEW HERE! Add nav bar
 - [ ] Add footer
 - [ ] Clean up stray color values into variables
 - [ ] Add the meta description tag
