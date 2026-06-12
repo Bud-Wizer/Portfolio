@@ -44,6 +44,16 @@ Check off tasks as you complete them. Add notes as you go.
 - [ ] Test site on mobile (resize browser window)
 - [ ] Check site loads correctly on GitHub Pages after changes
 
+## Phase 2.1 — More Specific Clean Up
+> Goal: html and styles css clean up.
+
+- [ ] NEW HERE! Add nav bar
+- [ ] Add footer
+- [ ] Clean up stray color values into variables
+- [ ] Add the meta description tag
+- [ ] Remove notes/notes.md from the repo
+- [ ] Update ROADMAP.md
+
 **Notes:**
 
 
