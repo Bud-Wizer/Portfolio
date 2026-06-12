@@ -48,11 +48,11 @@ Check off tasks as you complete them. Add notes as you go.
 > Goal: html and styles css clean up.
 
 - [x] NEW HERE! Add nav bar
-- [ ] Add footer
-- [ ] Clean up stray color values into variables
-- [ ] Add the meta description tag
-- [ ] Remove notes/notes.md from the repo
-- [ ] Update ROADMAP.md
+- [x] Add footer
+- [x] Clean up stray color values into variables
+- [x] Add the meta description tag
+- [x] Remove notes/notes.md from the repo
+- [x] Update ROADMAP.md
 
 **Notes:**
 
