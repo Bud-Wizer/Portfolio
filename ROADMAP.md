@@ -103,6 +103,7 @@ Check off tasks as you complete them. Add notes as you go.
 | Undraw | Free illustrations | undraw.co |
 | Coolors | Color palette generator | coolors.co |
 
+
 ---
 
 *Last updated: June 2026*
