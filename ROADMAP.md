@@ -27,7 +27,7 @@ Check off tasks as you complete them. Add notes as you go.
 ## Phase 2 — Clean Structure & Design
 > Goal: Organize files properly and write clean, professional HTML and CSS.
 
-- [ ] Reorganize files into a scalable folder structure:
+- [x] Reorganize files into a scalable folder structure:
   - `index.html` (home page)
   - `about.html`
   - `projects.html`
@@ -35,10 +35,10 @@ Check off tasks as you complete them. Add notes as you go.
   - `css/style.css`
   - `js/main.js`
   - `assets/images/`
-- [ ] Write semantic HTML (using proper tags like `<header>`, `<nav>`, `<main>`, `<footer>`)
-- [ ] Create a single external stylesheet (`css/style.css`)
-- [ ] Build out home page (`index.html`)
-- [ ] Build out About page
+- [x] Write semantic HTML (using proper tags like `<header>`, `<nav>`, `<main>`, `<footer>`)
+- [x] Create a single external stylesheet (`css/style.css`)
+- [x] Build out home page (`index.html`)
+- [x]   Build out About page
 - [ ] Build out Projects page
 - [ ] Build out Contact page
 - [ ] Test site on mobile (resize browser window)
@@ -87,6 +87,10 @@ Check off tasks as you complete them. Add notes as you go.
 
 **Notes:**
 
+
+---
+
+## Phase 5  
 
 ---
 
