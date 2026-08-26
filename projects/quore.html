@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quore — Case Study — Joe Canter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#ECE7DA;
+    --paper-alt:#E3DCC9;
+    --ink:#14202B;
+    --blueprint:#2C5A82;
+    --amber:#E8A33D;
+    --graphite:#33302A;
+    --line: rgba(20,32,43,0.16);
+    --line-dark: rgba(236,231,218,0.18);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--graphite);
+    font-family:'Inter', sans-serif;
+    font-size:16px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Space Grotesk', sans-serif;
+    color:var(--ink);
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--amber);
+    outline-offset:3px;
+  }
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+  }
+  .wrap{
+    max-width:1000px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* NAV */
+  nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(236,231,218,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1000px;
+    margin:0 auto;
+    padding:18px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .logo{ display:flex; align-items:center; gap:10px; }
+  .logo-mark{
+    width:34px; height:34px;
+    border:1.5px solid var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px; font-weight:500; color:var(--ink);
+  }
+  .logo-name{ font-size:15px; font-weight:600; color:var(--ink); }
+  .nav-links{ display:flex; gap:28px; align-items:center; }
+  .nav-links a{
+    text-decoration:none; color:var(--graphite);
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:0.05em; text-transform:uppercase; font-size:12px;
+  }
+  .nav-links a:hover{ color:var(--blueprint); }
+  .back-link{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:12px;
+  }
+
+  /* HEADER */
+  .case-header{
+    padding:70px 0 50px;
+    border-bottom:1px solid var(--line);
+  }
+  .eyebrow{ font-size:11.5px; color:var(--blueprint); display:block; margin-bottom:20px; }
+  .case-header h1{
+    font-size:clamp(36px, 5vw, 58px);
+    font-weight:700;
+  }
+  .case-meta{
+    display:flex;
+    gap:36px;
+    margin-top:28px;
+    flex-wrap:wrap;
+  }
+  .meta-item{ font-size:13px; }
+  .meta-item .label{
+    display:block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    color:var(--blueprint);
+    margin-bottom:4px;
+  }
+  .case-header .framing{
+    margin-top:30px;
+    max-width:600px;
+    font-size:18px;
+    color:var(--ink);
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:500;
+    line-height:1.4;
+  }
+
+  /* DIVIDER */
+  .divider{
+    display:flex; align-items:center; gap:14px;
+    color:var(--blueprint); opacity:0.75;
+    margin:0 0 32px;
+  }
+  .divider .tick{
+    width:9px; height:9px;
+    border-left:1px solid var(--blueprint);
+    border-bottom:1px solid var(--blueprint);
+    flex:none;
+  }
+  .divider .rule{ flex:1; height:1px; background:var(--line); }
+  .divider span.mono{ font-size:10.5px; color:var(--blueprint); white-space:nowrap; }
+
+  /* SECTIONS */
+  section.block{ padding:64px 0; }
+  section.block.alt{ background:var(--paper-alt); }
+  .block h2{
+    font-size:clamp(24px, 3vw, 30px);
+    font-weight:600;
+    max-width:560px;
+    margin-bottom:22px;
+  }
+  .block p.lead{
+    max-width:640px;
+    font-size:16px;
+    color:#413e37;
+  }
+
+  /* SCOPE LIST */
+  .scope-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    margin-top:34px;
+  }
+  .scope-item{
+    background:var(--paper);
+    padding:30px 28px;
+  }
+  .scope-item .num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--blueprint);
+    display:block;
+    margin-bottom:12px;
+  }
+  .scope-item h3{
+    font-size:18px;
+    font-weight:600;
+    margin-bottom:10px;
+  }
+  .scope-item p{
+    font-size:14.5px;
+    color:#4a473f;
+    margin:0;
+  }
+
+  /* MEDIA GRID */
+  .media-grid{
+    display:grid;
+    grid-template-columns:1.3fr 1fr;
+    gap:20px;
+    margin-top:36px;
+  }
+  .media-grid .span-2{ grid-column:1 / -1; }
+  .media-slot{
+    border:1px dashed var(--blueprint);
+    background:var(--paper);
+    aspect-ratio:16/9;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    color:var(--blueprint);
+    text-align:center;
+    padding:20px;
+  }
+  .media-slot.tall{ aspect-ratio:4/5; }
+  .media-slot .mono{ font-size:11px; }
+  .media-slot .hint{
+    font-family:'Inter', sans-serif;
+    text-transform:none;
+    letter-spacing:0;
+    font-size:12.5px;
+    color:#6b7f91;
+    max-width:260px;
+  }
+  .caption{
+    font-size:12.5px;
+    color:#6b6858;
+    margin-top:10px;
+    font-family:'IBM Plex Mono', monospace;
+  }
+
+  /* REFLECTION */
+  .reflection{
+    max-width:640px;
+  }
+  .reflection p{
+    font-size:17px;
+    color:var(--ink);
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:500;
+    line-height:1.5;
+  }
+
+  /* NEXT / CTA */
+  .next-band{
+    background:var(--ink);
+    color:var(--paper);
+    padding:70px 0;
+    border-top:3px solid var(--amber);
+  }
+  .next-band .eyebrow{ color:var(--amber); }
+  .next-band h2{
+    color:var(--paper);
+    font-size:clamp(24px, 3.2vw, 34px);
+    font-weight:600;
+    max-width:560px;
+  }
+  .next-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:20px;
+    margin-top:30px;
+  }
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    padding:14px 24px;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border:1px solid transparent;
+    cursor:pointer;
+    transition:all 0.18s ease;
+  }
+  .btn-primary{ background:var(--amber); color:var(--ink); }
+  .btn-primary:hover{ background:var(--paper); }
+  .btn-outline{
+    border-color:var(--line-dark);
+    color:var(--paper);
+  }
+  .btn-outline:hover{ border-color:var(--amber); color:var(--amber); }
+
+  footer{
+    background:var(--ink);
+    border-top:1px solid var(--line-dark);
+    padding:26px 0;
+  }
+  .footer-inner{
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:14px;
+  }
+  footer .mono{ font-size:11px; color:#8b93a0; }
+
+  @media (max-width: 720px){
+    .scope-grid{ grid-template-columns:1fr; }
+    .media-grid{ grid-template-columns:1fr; }
+    .case-meta{ gap:24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">
+      <div class="logo-mark">JC</div>
+      <span class="logo-name">Joe Canter</span>
+    </div>
+    <div class="nav-links">
+      <a href="../index.html" class="back-link">&larr; All work</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="case-header">
+  <div class="wrap">
+    <span class="eyebrow mono">Case Study &bull; Hospitality SaaS</span>
+    <h1>Quore</h1>
+    <div class="case-meta">
+      <div class="meta-item">
+        <span class="label mono">Role</span>
+        Creative &amp; Content Lead
+      </div>
+      <div class="meta-item">
+        <span class="label mono">Scope</span>
+        Brand, Video, Sales Enablement
+      </div>
+      <div class="meta-item">
+        <span class="label mono">Tenure</span>
+        Six years
+      </div>
+    </div>
+    <p class="framing">Quore's hotel operations software solves a real problem for a demanding audience. Explaining that software, to prospects, new hires, and customers who weren't marketers or software people themselves, was a harder one.</p>
+  </div>
+</header>
+
+<section class="block">
+  <div class="wrap">
+    <div class="divider">
+      <div class="tick"></div>
+      <div class="rule"></div>
+      <span class="mono">The Problem</span>
+    </div>
+    <h2>Technical software, non-technical audience.</h2>
+    <p class="lead">Quore's platform runs the operational backbone of a hotel, maintenance, inspections, engineering workflows, the kind of software that's easy to underestimate and hard to explain quickly. The people buying it, using it, and being sold it were hotel operators and general managers, not software buyers. Content had to do real translation work before it could do any selling, and it had to work across three audiences at once: prospects evaluating the product, sales teams pitching it live, and customers already depending on it day to day.</p>
+  </div>
+</section>
+
+<section class="block alt">
+  <div class="wrap">
+    <div class="divider">
+      <div class="tick"></div>
+      <div class="rule"></div>
+      <span class="mono">What I Did</span>
+    </div>
+    <h2>Four areas of ownership, one throughline.</h2>
+    <p class="lead">The role spanned brand, production, and sales content, but the job underneath all of it was the same: make something complicated legible enough to trust.</p>
+
+    <div class="scope-grid">
+      <div class="scope-item">
+        <span class="num mono">01</span>
+        <h3>Brand Development</h3>
+        <p>Helped shape how Quore looked, sounded, and felt across every touchpoint, working with leadership to translate a technical product into a visual and tonal identity that felt approachable rather than clinical.</p>
+      </div>
+      <div class="scope-item">
+        <span class="num mono">02</span>
+        <h3>Content Production</h3>
+        <p>Led the creation of Quore's video and multimedia content, from product explainers to customer stories, building a library that supported marketing, onboarding, and internal training simultaneously.</p>
+      </div>
+      <div class="scope-item">
+        <span class="num mono">03</span>
+        <h3>Sales Enablement</h3>
+        <p>Produced content built specifically for live sales conversations and demos, work that had to hold up under real customer questions, not just look good in a deck.</p>
+      </div>
+      <div class="scope-item">
+        <span class="num mono">04</span>
+        <h3>Cross-Functional Leadership</h3>
+        <p>Worked across sales, customer success, and product teams to make sure content reflected how the product was actually used in the field, not just how it was pitched.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="divider">
+      <div class="tick"></div>
+      <div class="rule"></div>
+      <span class="mono">Selected Work</span>
+    </div>
+    <h2>A sample of the output.</h2>
+    <p class="lead">Drop your real assets into the slots below. Each one is sized and labeled for what it should hold.</p>
+
+    <div class="media-grid">
+      <!--
+        VIDEO SLOT
+        Replace this .media-slot div with an actual embed, e.g.:
+        <video controls poster="thumb.jpg" style="width:100%;aspect-ratio:16/9;">
+          <source src="your-video.mp4" type="video/mp4">
+        </video>
+        or an iframe embed from YouTube/Vimeo.
+      -->
+      <div class="media-slot span-2">
+        <span class="mono">Video</span>
+        <span class="hint">Drop in a product explainer or customer story video here. 16:9 works best for this slot.</span>
+      </div>
+
+      <!--
+        IMAGE SLOT 1
+        Replace with: <img src="brand-asset.jpg" alt="..." style="width:100%;height:100%;object-fit:cover;">
+      -->
+      <div class="media-slot">
+        <span class="mono">Image</span>
+        <span class="hint">Brand guideline snippet, style frame, or finished marketing asset.</span>
+      </div>
+
+      <!--
+        IMAGE SLOT 2 (tall)
+        Replace with a portrait-oriented image, e.g. a sales one-pager or social asset.
+      -->
+      <div class="media-slot tall">
+        <span class="mono">Image</span>
+        <span class="hint">Sales enablement piece or a portrait-format asset.</span>
+      </div>
+    </div>
+    <p class="caption">// Captions can go under each asset once real files are in place, keep them short and factual (what it is, not why it's impressive).</p>
+  </div>
+</section>
+
+<section class="block alt">
+  <div class="wrap reflection">
+    <div class="divider">
+      <div class="tick"></div>
+      <div class="rule"></div>
+      <span class="mono">Reflection</span>
+    </div>
+    <p>Trust in B2B content isn't built by listing features. It's built by proving you understand the buyer's day to day well enough to have made this for them, not just about them. That's the standard I've carried into every project since.</p>
+  </div>
+</section>
+
+<section class="next-band">
+  <div class="wrap">
+    <span class="eyebrow mono">Next</span>
+    <div class="next-row">
+      <h2>More case studies are on the way.</h2>
+      <div style="display:flex; gap:14px;">
+        <a href="../index.html" class="btn btn-outline">All work</a>
+        <a href="../index.html#contact" class="btn btn-primary">Get in touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span class="mono">&copy; 2026 Joe Canter</span>
+  </div>
+</footer>
+
+</body>
+</html>
