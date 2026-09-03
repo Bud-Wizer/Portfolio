@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume — Joe Canter</title>
+<meta name="description" content="Joe Canter's resume: content strategy and marketing leadership across B2B SaaS, enterprise technology, and manufacturing.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#ECE7DA;
+    --paper-alt:#E3DCC9;
+    --ink:#14202B;
+    --blueprint:#2C5A82;
+    --amber:#E8A33D;
+    --graphite:#33302A;
+    --line: rgba(20,32,43,0.16);
+    --line-dark: rgba(236,231,218,0.18);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--graphite);
+    font-family:'Inter', sans-serif;
+    font-size:16px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Space Grotesk', sans-serif;
+    color:var(--ink);
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--amber);
+    outline-offset:3px;
+  }
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+  }
+  .wrap{
+    max-width:1000px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* NAV */
+  nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(236,231,218,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1000px;
+    margin:0 auto;
+    padding:18px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .logo{ display:flex; align-items:center; gap:10px; text-decoration:none; }
+  .logo-mark{
+    width:34px; height:34px;
+    border:1.5px solid var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px; font-weight:500; color:var(--ink);
+  }
+  .logo-name{ font-size:15px; font-weight:600; color:var(--ink); }
+  .nav-links{ display:flex; gap:28px; align-items:center; }
+  .nav-links a{
+    text-decoration:none; color:var(--graphite);
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:0.05em; text-transform:uppercase; font-size:12px;
+  }
+  .nav-links a:hover{ color:var(--blueprint); }
+  .nav-links a.current{ color:var(--blueprint); }
+  .nav-cta{
+    border:1px solid var(--ink);
+    padding:8px 16px;
+    color:var(--ink);
+  }
+  .nav-cta:hover{
+    background:var(--ink);
+    color:var(--paper);
+  }
+
+  /* HEADER */
+  .case-header{
+    padding:70px 0 44px;
+    border-bottom:1px solid var(--line);
+  }
+  .eyebrow{ font-size:11.5px; color:var(--blueprint); display:block; margin-bottom:20px; }
+  .case-header h1{
+    font-size:clamp(34px, 5vw, 54px);
+    font-weight:700;
+  }
+  .case-header p.framing{
+    margin-top:22px;
+    max-width:600px;
+    font-size:16.5px;
+    color:#413e37;
+  }
+  .header-actions{
+    margin-top:32px;
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+  }
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    padding:14px 24px;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border:1px solid transparent;
+    cursor:pointer;
+    transition:all 0.18s ease;
+  }
+  .btn-primary{ background:var(--ink); color:var(--paper); }
+  .btn-primary:hover{ background:var(--blueprint); }
+  .btn-secondary{
+    border-color:var(--ink);
+    color:var(--ink);
+    background:transparent;
+  }
+  .btn-secondary:hover{
+    border-color:var(--blueprint);
+    color:var(--blueprint);
+  }
+
+  /* VIEWER */
+  .viewer-section{ padding:56px 0 90px; }
+  .viewer-frame{
+    background:#fff;
+    border:1px solid var(--line);
+    box-shadow:0 18px 40px -18px rgba(20,32,43,0.35);
+    padding:18px;
+  }
+  #pdf-viewer{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    gap:20px;
+  }
+  #pdf-viewer canvas{
+    max-width:100%;
+    height:auto;
+    display:block;
+    box-shadow:0 1px 0 var(--line);
+  }
+  .viewer-status{
+    text-align:center;
+    padding:60px 20px;
+    color:#6b6858;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+  }
+  .viewer-fallback{
+    display:none;
+    text-align:center;
+    padding:60px 20px;
+  }
+  .viewer-fallback p{ color:#413e37; margin-bottom:20px; }
+
+  footer{
+    background:var(--ink);
+    border-top:1px solid var(--line-dark);
+    padding:26px 0;
+  }
+  .footer-inner{
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:14px;
+  }
+  footer .mono{ font-size:11px; color:#8b93a0; }
+  footer a{ text-decoration:none; }
+  footer .footer-links a{ margin-left:20px; }
+  footer .footer-links a:hover{ color:var(--amber); }
+
+  @media (max-width: 620px){
+    .viewer-frame{ padding:10px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="index.html" class="logo">
+      <div class="logo-mark">JC</div>
+      <span class="logo-name">Joe Canter</span>
+    </a>
+    <div class="nav-links">
+      <a href="index.html#work">Work</a>
+      <a href="index.html#about">About</a>
+      <a href="resume.html" class="current">Resume</a>
+      <a href="index.html#contact" class="nav-cta">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="case-header">
+  <div class="wrap">
+    <span class="eyebrow mono">Resume</span>
+    <h1>Joe Canter</h1>
+    <p class="framing">Content strategy and marketing leadership across B2B SaaS, enterprise technology, and manufacturing. View it below, or grab the PDF.</p>
+    <div class="header-actions">
+      <a href="assets/resume.pdf" download class="btn btn-primary">Download PDF</a>
+      <a href="https://www.linkedin.com/in/video-joe/" target="_blank" rel="noopener" class="btn btn-secondary">View LinkedIn</a>
+    </div>
+  </div>
+</header>
+
+<section class="viewer-section">
+  <div class="wrap">
+    <div class="viewer-frame">
+      <div id="pdf-viewer">
+        <div class="viewer-status" id="viewer-status">Loading resume&hellip;</div>
+      </div>
+      <div class="viewer-fallback" id="viewer-fallback">
+        <p>The resume preview couldn't load in this browser.</p>
+        <a href="assets/resume.pdf" download class="btn btn-primary">Download the PDF instead</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span class="mono">&copy; 2026 Joe Canter</span>
+    <div class="footer-links mono" style="font-size:11px;">
+      <a href="index.html#work">Work</a>
+      <a href="index.html#about">About</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script>
+  (function(){
+    var url = 'assets/resume.pdf';
+    var statusEl = document.getElementById('viewer-status');
+    var viewerEl = document.getElementById('pdf-viewer');
+    var fallbackEl = document.getElementById('viewer-fallback');
+
+    if (typeof pdfjsLib === 'undefined') {
+      showFallback();
+      return;
+    }
+    pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+    function showFallback(){
+      if (statusEl) statusEl.style.display = 'none';
+      fallbackEl.style.display = 'block';
+    }
+
+    function renderPage(pdf, pageNum, containerWidth){
+      return pdf.getPage(pageNum).then(function(page){
+        var baseViewport = page.getViewport({ scale: 1 });
+        var scale = Math.min(2, (containerWidth / baseViewport.width) || 1);
+        var viewport = page.getViewport({ scale: scale * (window.devicePixelRatio || 1) });
+
+        var canvas = document.createElement('canvas');
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        canvas.style.width = (viewport.width / (window.devicePixelRatio || 1)) + 'px';
+        canvas.style.height = (viewport.height / (window.devicePixelRatio || 1)) + 'px';
+
+        var ctx = canvas.getContext('2d');
+        viewerEl.appendChild(canvas);
+
+        return page.render({ canvasContext: ctx, viewport: viewport }).promise;
+      });
+    }
+
+    var containerWidth = viewerEl.clientWidth || 900;
+
+    pdfjsLib.getDocument(url).promise.then(function(pdf){
+      if (statusEl) statusEl.remove();
+      var chain = Promise.resolve();
+      var _loop = function(i){
+        chain = chain.then(function(){ return renderPage(pdf, i, containerWidth); });
+      };
+      for (var i = 1; i <= pdf.numPages; i++) { _loop(i); }
+      return chain;
+    }).catch(function(err){
+      console.error('Resume PDF failed to load:', err);
+      showFallback();
+    });
+  })();
+</script>
+
+</body>
+</html>
