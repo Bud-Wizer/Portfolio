@@ -384,15 +384,16 @@
   }
   .about-grid{
     display:grid;
-    grid-template-columns:1.1fr 0.9fr;
-    gap:64px;
+    grid-template-columns:auto 1fr 0.85fr;
+    gap:44px;
     margin-top:36px;
+    align-items:start;
   }
   .about-photo{
     position:relative;
-    width:112px;
-    height:112px;
-    margin-bottom:24px;
+    width:170px;
+    aspect-ratio:4/5;
+    flex:none;
   }
   .about-photo img{
     width:100%;
@@ -691,10 +692,10 @@
       <span class="mono">About &amp; Capabilities</span>
     </div>
     <div class="about-grid">
+      <div class="about-photo">
+        <img src="assets/images/headshot.jpg" alt="Joe Canter" loading="lazy">
+      </div>
       <div>
-        <div class="about-photo">
-          <img src="assets/images/headshot.jpg" alt="Joe Canter" loading="lazy">
-        </div>
         <h2>About</h2>
         <p>I help B2B companies with complex or technical products turn what they do into content people can use. That means shaping brand strategy and content systems, then partnering with creative and production to bring the work to life without losing the strategy behind it.</p>
         <p>My background spans hospitality SaaS, enterprise technology, and manufacturing, industries where the product isn't self explanatory and content has to do real translation work before it can do any selling.</p>
