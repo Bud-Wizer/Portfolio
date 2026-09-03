@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Systems — Case Study — Joe Canter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#ECE7DA;
+    --paper-alt:#E3DCC9;
+    --ink:#14202B;
+    --blueprint:#2C5A82;
+    --amber:#E8A33D;
+    --graphite:#33302A;
+    --line: rgba(20,32,43,0.16);
+    --line-dark: rgba(236,231,218,0.18);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--graphite);
+    font-family:'Inter', sans-serif;
+    font-size:16px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Space Grotesk', sans-serif;
+    color:var(--ink);
+    margin:0;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--amber);
+    outline-offset:3px;
+  }
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+  }
+  .wrap{
+    max-width:1000px;
+    margin:0 auto;
+    padding:0 32px;
+  }
+
+  /* NAV */
+  nav{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(236,231,218,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-inner{
+    max-width:1000px;
+    margin:0 auto;
+    padding:18px 32px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+  }
+  .logo{ display:flex; align-items:center; gap:10px; }
+  .logo-mark{
+    width:34px; height:34px;
+    border:1.5px solid var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px; font-weight:500; color:var(--ink);
+  }
+  .logo-name{ font-size:15px; font-weight:600; color:var(--ink); }
+  .nav-links{ display:flex; gap:28px; align-items:center; }
+  .nav-links a{
+    text-decoration:none; color:var(--graphite);
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:0.05em; text-transform:uppercase; font-size:12px;
+  }
+  .nav-links a:hover{ color:var(--blueprint); }
+  .back-link{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:12px;
+  }
+
+  /* HEADER */
+  .case-header{
+    padding:70px 0 50px;
+    border-bottom:1px solid var(--line);
+  }
+  .eyebrow{ font-size:11.5px; color:var(--blueprint); display:block; margin-bottom:20px; }
+  .case-header h1{
+    font-size:clamp(36px, 5vw, 58px);
+    font-weight:700;
+  }
+  .case-meta{
+    display:flex;
+    gap:36px;
+    margin-top:28px;
+    flex-wrap:wrap;
+  }
+  .meta-item{ font-size:13px; }
+  .meta-item .label{
+    display:block;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10px;
+    color:var(--blueprint);
+    margin-bottom:4px;
+  }
+  .case-header .framing{
+    margin-top:30px;
+    max-width:600px;
+    font-size:18px;
+    color:var(--ink);
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:500;
+    line-height:1.4;
+  }
+
+  /* DIVIDER */
+  .divider{
+    display:flex; align-items:center; gap:14px;
+    color:var(--blueprint); opacity:0.75;
+    margin:0 0 32px;
+  }
+  .divider .tick{
+    width:9px; height:9px;
+    border-left:1px solid var(--blueprint);
+    border-bottom:1px solid var(--blueprint);
+    flex:none;
+  }
+  .divider .rule{ flex:1; height:1px; background:var(--line); }
+  .divider span.mono{ font-size:10.5px; color:var(--blueprint); white-space:nowrap; }
+
+  /* SECTIONS */
+  section.block{ padding:64px 0; }
+  section.block.alt{ background:var(--paper-alt); }
+  .block h2{
+    font-size:clamp(24px, 3vw, 30px);
+    font-weight:600;
+    max-width:560px;
+    margin-bottom:22px;
+  }
+  .block p.lead{
+    max-width:640px;
+    font-size:16px;
+    color:#413e37;
+  }
+
+  /* SCOPE LIST */
+  .scope-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:1px;
+    background:var(--line);
+    border:1px solid var(--line);
+    margin-top:34px;
+  }
+  .scope-item{
+    background:var(--paper);
+    padding:30px 28px;
+  }
+  .scope-item .num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--blueprint);
+    display:block;
+    margin-bottom:12px;
+  }
+  .scope-item h3{
+    font-size:18px;
+    font-weight:600;
+    margin-bottom:10px;
+  }
+  .scope-item p{
+    font-size:14.5px;
+    color:#4a473f;
+    margin:0;
+  }
+
+  /* VIDEO EMBED + PROOF GRID */
+  .video-embed{
+    position:relative;
+    aspect-ratio:16/9;
+    background:#0c1418;
+    border:1px solid var(--line);
+    margin-top:36px;
+  }
+  .video-embed iframe{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    border:0;
+  }
+  .media-story{
+    margin-top:18px;
+    max-width:680px;
+    font-size:15px;
+    color:#413e37;
+  }
+  .caption{
+    font-size:12.5px;
+    color:#6b6858;
+    margin-top:10px;
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .proof-grid{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:20px;
+    margin-top:20px;
+  }
+  .proof-item .thumb{
+    aspect-ratio:16/9;
+    overflow:hidden;
+    border:1px solid var(--line);
+    background:var(--paper);
+    position:relative;
+  }
+  .proof-item .thumb img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    display:block;
+  }
+  .proof-item .thumb iframe{
+    position:absolute;
+    inset:0;
+    width:100%;
+    height:100%;
+    border:0;
+  }
+  .proof-note{
+    margin-top:28px;
+    max-width:640px;
+    font-size:14.5px;
+    color:#5b584f;
+    border-top:1px solid var(--line);
+    padding-top:22px;
+  }
+  @media (max-width: 720px){
+    .proof-grid{ grid-template-columns:1fr; }
+  }
+
+  /* REFLECTION */
+  .reflection{
+    max-width:640px;
+  }
+  .reflection p{
+    font-size:17px;
+    color:var(--ink);
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:500;
+    line-height:1.5;
+  }
+
+  /* NEXT / CTA */
+  .next-band{
+    background:var(--ink);
+    color:var(--paper);
+    padding:70px 0;
+    border-top:3px solid var(--amber);
+  }
+  .next-band .eyebrow{ color:var(--amber); }
+  .next-band h2{
+    color:var(--paper);
+    font-size:clamp(24px, 3.2vw, 34px);
+    font-weight:600;
+    max-width:560px;
+  }
+  .next-row{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:20px;
+    margin-top:30px;
+  }
+  .btn{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    letter-spacing:0.04em;
+    text-transform:uppercase;
+    padding:14px 24px;
+    text-decoration:none;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    border:1px solid transparent;
+    cursor:pointer;
+    transition:all 0.18s ease;
+  }
+  .btn-primary{ background:var(--amber); color:var(--ink); }
+  .btn-primary:hover{ background:var(--paper); }
+  .btn-outline{
+    border-color:var(--line-dark);
+    color:var(--paper);
+  }
+  .btn-outline:hover{ border-color:var(--amber); color:var(--amber); }
+
+  footer{
+    background:var(--ink);
+    border-top:1px solid var(--line-dark);
+    padding:26px 0;
+  }
+  .footer-inner{
+    display:flex; justify-content:space-between; align-items:center;
+    flex-wrap:wrap; gap:14px;
+  }
+  footer .mono{ font-size:11px; color:#8b93a0; }
+
+  @media (max-width: 720px){
+    .scope-grid{ grid-template-columns:1fr; }
+    .case-meta{ gap:24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo">
+      <div class="logo-mark">JC</div>
+      <span class="logo-name">Joe Canter</span>
+    </div>
+    <div class="nav-links">
+      <a href="../index.html" class="back-link">&larr; All work</a>
+      <a href="../index.html#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<header class="case-header">
+  <div class="wrap">
+    <span class="eyebrow mono">Case Study &bull; Hospitality SaaS</span>
+    <h1>Systems</h1>
+    <div class="case-meta">
+      <div class="meta-item">
+        <span class="label mono">Role</span>
+        Creative &amp; Content Lead
+      </div>
+      <div class="meta-item">
+        <span class="label mono">Scope</span>
+        Campaign Architecture, Format Design, Brand Systems
+      </div>
+      <div class="meta-item">
+        <span class="label mono">Tenure</span>
+        Six years
+      </div>
+    </div>
+    <p class="framing">A single creative lead can produce good work. What doesn't scale is being the reason every new campaign has to start from zero. The job was building things other people, and future campaigns, could run without me rebuilding them each time.</p>
+  </div>
+</header>
+
+<section class="block">
+  <div class="wrap">
+    <div class="divider">
+      <div class="tick"></div>
+      <div class="rule"></div>
+      <span class="mono">The Problem</span>
+    </div>
+    <h2>One team, many campaigns, one point of failure.</h2>
+    <p class="lead">Quore ran a constant cadence of trade shows, persona-driven marketing, and product education content, all of which needed to stay visually and tonally consistent without every new piece being rebuilt from scratch or waiting on one person's calendar. The fix wasn't working faster. It was building frameworks and formats other people could pick up and run correctly without me in the room.</p>
+  </div>
+</section>
+
+<section class="block alt">
+  <div class="wrap">
+    <div class="divider">
+      <div class="tick"></div>
+      <div class="rule"></div>
+      <span class="mono">What I Did</span>
+    </div>
+    <h2>Four systems, one throughline.</h2>
+    <p class="lead">Different formats, different timelines, same underlying question: does this still work if I'm not the one running it next time.</p>
+
+    <div class="scope-grid">
+      <div class="scope-item">
+        <span class="num mono">01</span>
+        <h3>Campaign Architecture</h3>
+        <p>Conceived and led a persona-driven campaign built on customer personas established in the company's brand guidelines, designed modular from the start so individual segments could be pulled and reused separately across different trade shows and partner events.</p>
+      </div>
+      <div class="scope-item">
+        <span class="num mono">02</span>
+        <h3>Format Systems</h3>
+        <p>Created and sustained a branded short-form video series that ran for roughly two and a half years on one consistent template, title card, color-coded background, single music bed, so new product topics could be turned around quickly without redesigning the format each time.</p>
+      </div>
+      <div class="scope-item">
+        <span class="num mono">03</span>
+        <h3>Format Evolution</h3>
+        <p>Expanded the original persona campaign into a second generation built around audience-specific taglines, proving the system could grow into a new phase rather than being retired after one use.</p>
+      </div>
+      <div class="scope-item">
+        <span class="num mono">04</span>
+        <h3>Brand Foundations</h3>
+        <p>Contributed design work, writing, and cross-department interviews to the company's brand guidelines, including the persona framework that both campaigns above were built on.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="block">
+  <div class="wrap">
+    <div class="divider">
+      <div class="tick"></div>
+      <div class="rule"></div>
+      <span class="mono">Selected Work</span>
+    </div>
+    <h2>The system, and what it produced.</h2>
+    <p class="lead">One campaign told in full, backed by what came out of the format it established.</p>
+
+    <div class="video-embed">
+      <iframe src="https://www.youtube.com/embed/jsHPR7GL1ow" title="Together, with Quore | Quore Overview" loading="lazy" allowfullscreen></iframe>
+    </div>
+    <p class="media-story">Built at a point when Quore had no existing media demonstrating the product, this campaign translated the customer personas from the company's brand guidelines, Front Desk, Housekeeping, Engineering, Finance, Management, into individual segments. It was designed modular on purpose, so pieces could be pulled and used separately at relevant trade shows and events rather than treated as one fixed asset.</p>
+    <p class="caption">// Together, with Quore | Quore Overview</p>
+
+    <div class="proof-grid">
+      <div class="proof-item">
+        <div class="thumb">
+          <iframe src="https://www.youtube.com/embed/q_DhzZ6ASNo" title="Quore Users | Hotel Operations" loading="lazy" allowfullscreen></iframe>
+        </div>
+        <p class="caption">// Quore Users | Hotel Operations, the expanded second generation of the same persona system, closing each segment on a custom "you ___, we do too" line</p>
+      </div>
+      <div class="proof-item">
+        <div class="thumb">
+          <iframe src="https://www.youtube.com/embed/oMsJc6W0dWg" title="Q Tip: How to Create Custom Hotel Inspections in Quore" loading="lazy" allowfullscreen></iframe>
+        </div>
+        <p class="caption">// Q Tip: How to Create Custom Hotel Inspections in Quore, one of 14 entries produced on the same template over roughly two and a half years</p>
+      </div>
+    </div>
+    <p class="proof-note">The persona framework both campaigns above are built on came out of the company's brand guidelines, credited to the Creative Director who led that project. My role was contributing design and writing, and conducting the employee interviews that helped shape it.</p>
+  </div>
+</section>
+
+<section class="block alt">
+  <div class="wrap reflection">
+    <div class="divider">
+      <div class="tick"></div>
+      <div class="rule"></div>
+      <span class="mono">Reflection</span>
+    </div>
+    <p>A brand system only proves itself once other people can use it without you in the room. That's the test I've built toward ever since, not whether a campaign looked good once, but whether it still worked the fifth time, run by someone else.</p>
+  </div>
+</section>
+
+<section class="next-band">
+  <div class="wrap">
+    <span class="eyebrow mono">Next</span>
+    <div class="next-row">
+      <h2>More case studies are on the way.</h2>
+      <div style="display:flex; gap:14px;">
+        <a href="../index.html" class="btn btn-outline">All work</a>
+        <a href="../index.html#contact" class="btn btn-primary">Get in touch</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap footer-inner">
+    <span class="mono">&copy; 2026 Joe Canter</span>
+  </div>
+</footer>
+
+</body>
+</html>
