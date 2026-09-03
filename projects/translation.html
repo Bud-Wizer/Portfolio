@@ -251,6 +251,13 @@
     grid-template-columns:1fr;
     max-width:480px;
   }
+  .proof-item .thumb.ui-shot{
+    aspect-ratio:3/2;
+    background:#fff;
+  }
+  .proof-item .thumb.ui-shot img{
+    object-fit:contain;
+  }
   .proof-item .thumb{
     aspect-ratio:16/9;
     overflow:hidden;
@@ -447,7 +454,7 @@
       <span class="mono">Selected Work</span>
     </div>
     <h2>A sample of the output.</h2>
-    <p class="lead">One piece, told in full, backed by another that shows it wasn't a one-time thing.</p>
+    <p class="lead">One piece, told in full, backed by two more that show it wasn't a one-time thing.</p>
 
     <div class="video-embed">
       <iframe src="https://www.youtube.com/embed/6FsQKMcHzpE" title="Quore Integration with Kipsu: Guest Requests Directly to Quore" loading="lazy" allowfullscreen></iframe>
@@ -455,12 +462,18 @@
     <p class="media-story">Kipsu, our integration partner, had no finished marketing assets ready ahead of launch. I took ownership of the whole project start to finish: shaped the creative direction, wrote the script, hired the voice talent, and handled all of the animation and editing myself, built around Quore's brand voice and style throughout. On Kipsu's side, I worked directly with their design, marketing, and sales teams; internally, I coordinated with design, marketing, customer support, development, and sales to land on the right positioning and message for both companies. A pilot customer's general manager later pointed to the integration as a real improvement in departmental accountability, proof the story we told matched what was actually happening on the ground.</p>
     <p class="caption">// Quore Integration with Kipsu: Guest Requests Directly to Quore</p>
 
-    <div class="proof-grid single">
+    <div class="proof-grid">
       <div class="proof-item">
         <div class="thumb">
           <iframe src="https://www.youtube.com/embed/_GQDY1BjqgM" title="Quore Customer Spotlight: John Brewster, Chief Engineer" loading="lazy" allowfullscreen></iframe>
         </div>
         <p class="caption">// Customer Spotlight: John Brewster, Chief Engineer, distributed across video, web, and social</p>
+      </div>
+      <div class="proof-item">
+        <div class="thumb ui-shot">
+          <img src="../assets/images/quore/password-reset.gif" alt="Animated walkthrough of the Quore login screen guiding a user through resetting a forgotten password, step by step in plain language" loading="lazy">
+        </div>
+        <p class="caption">// Password reset training, one of about a dozen how-to walkthroughs built for tasks no one wants to read a manual for</p>
       </div>
     </div>
     <p class="proof-note">Part of a wider library built for the same problem: roughly a dozen how-to and blog explainer animations translating individual product features into short, plain-language pieces for customers who weren't software people.</p>
