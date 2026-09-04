@@ -210,10 +210,10 @@
   /* VIEWER */
   .viewer-section{ padding:56px 0 90px; }
   .viewer-frame{
-    background:#fff;
-    border:1px solid var(--line);
-    box-shadow:0 18px 40px -18px rgba(20,32,43,0.35);
-    padding:18px;
+    background:transparent;
+    border:none;
+    box-shadow:none;
+    padding:0;
   }
   #pdf-viewer{
     display:flex;
@@ -225,7 +225,8 @@
     max-width:100%;
     height:auto;
     display:block;
-    box-shadow:0 1px 0 var(--line);
+    border:1px solid var(--line);
+    box-shadow:0 18px 40px -18px rgba(20,32,43,0.28);
   }
   .viewer-status{
     text-align:center;
@@ -258,7 +259,7 @@
   footer .footer-links a:hover{ color:var(--amber); }
 
   @media (max-width: 620px){
-    .viewer-frame{ padding:10px; }
+    .viewer-frame{ padding:0; }
   }
 </style>
 </head>
@@ -288,7 +289,7 @@
     <h1>Joe Canter</h1>
     <p class="framing">Content strategy and marketing leadership across B2B SaaS, enterprise technology, and manufacturing. View it below, or grab the PDF.</p>
     <div class="header-actions">
-      <a href="assets/resume.pdf" download class="btn btn-primary">Download PDF</a>
+      <a href="assets/resume.pdf" download="Joe Canter - Content Marketing Manager.pdf" class="btn btn-primary">Download PDF</a>
       <a href="https://www.linkedin.com/in/video-joe/" target="_blank" rel="noopener" class="btn btn-secondary">View LinkedIn</a>
     </div>
   </div>
@@ -302,7 +303,7 @@
       </div>
       <div class="viewer-fallback" id="viewer-fallback">
         <p>The resume preview couldn't load in this browser.</p>
-        <a href="assets/resume.pdf" download class="btn btn-primary">Download the PDF instead</a>
+        <a href="assets/resume.pdf" download="Joe Canter - Content Marketing Manager.pdf" class="btn btn-primary">Download the PDF instead</a>
       </div>
     </div>
   </div>
