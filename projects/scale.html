@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script>document.documentElement.classList.add('js');</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Scale — Case Study — Joe Canter</title>
 <meta name="description" content="Case study: turning positioning and messaging into sales enablement content reps actually used, from account marketing to the trade show floor.">
@@ -372,6 +373,75 @@
     .media-grid{ grid-template-columns:1fr; }
     .case-meta{ gap:24px; }
   }
+
+  /* ---------- MOTION: scroll reveal ---------- */
+  .reveal{ transition:opacity 0.6s ease, transform 0.6s ease; }
+  .js .reveal{ opacity:0; transform:translateY(18px); }
+  .js .reveal.is-visible{ opacity:1; transform:translateY(0); }
+
+  .js .divider .rule{ transform:scaleX(0); transform-origin:left; transition:transform 0.6s ease; }
+  .js .divider .tick{ opacity:0; transition:opacity 0.3s ease; }
+  .js .divider span.mono{ opacity:0; transition:opacity 0.35s ease; }
+  .js .divider.is-visible .rule{ transform:scaleX(1); }
+  .js .divider.is-visible .tick{ opacity:1; transition-delay:0.45s; }
+  .js .divider.is-visible span.mono{ opacity:1; transition-delay:0.55s; }
+
+  /* corner annotation: hover on desktop, one-time reveal on touch/scroll */
+  .annotate{ position:relative; }
+  .annotate::before, .annotate::after{
+    content:'';
+    position:absolute;
+    width:10px; height:10px;
+    opacity:0;
+    transition:opacity 0.25s ease, transform 0.25s ease;
+    pointer-events:none;
+  }
+  .annotate::before{
+    top:-4px; left:-4px;
+    border-top:1.5px solid var(--amber);
+    border-left:1.5px solid var(--amber);
+    transform:translate(3px,3px);
+  }
+  .annotate::after{
+    bottom:-4px; right:-4px;
+    border-bottom:1.5px solid var(--amber);
+    border-right:1.5px solid var(--amber);
+    transform:translate(-3px,-3px);
+  }
+  .annotate:hover::before, .annotate:hover::after,
+  .annotate.is-annotated::before, .annotate.is-annotated::after{
+    opacity:1;
+    transform:translate(0,0);
+  }
+
+  /* case-header draw-in accent (underline) */
+  .case-accent{
+    display:block;
+    height:3px;
+    width:64px;
+    background:var(--amber);
+    margin-top:18px;
+    transform-origin:left;
+  }
+  .js .case-accent{ transform:scaleX(0); transition:transform 0.9s cubic-bezier(.65,0,.35,1) 0.35s; }
+  .js .case-accent.is-drawn{ transform:scaleX(1); }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal, .divider .rule, .divider .tick, .divider span.mono, .annotate::before, .annotate::after, .case-accent{
+      transition:none !important;
+    }
+    .js .reveal{ opacity:1 !important; transform:none !important; }
+    .js .case-accent{ transform:scaleX(1) !important; }
+  }
+
+  /* ---------- MOTION: cross-page view transitions ---------- */
+  @view-transition{ navigation: auto; }
+  nav{ view-transition-name: site-nav; }
+  @media (prefers-reduced-motion: reduce){
+    ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*){
+      animation:none !important;
+    }
+  }
 </style>
 </head>
 <body>
@@ -393,7 +463,8 @@
   <div class="wrap">
     <span class="eyebrow mono">Case Study &bull; Sales Enablement</span>
     <h1>Scale</h1>
-    <div class="case-meta">
+    <span class="case-accent" aria-hidden="true"></span>
+    <div class="case-meta reveal">
       <div class="meta-item">
         <span class="label mono">Role</span>
         Creative &amp; Content Lead
@@ -407,7 +478,7 @@
         Six years
       </div>
     </div>
-    <p class="framing">Marketing content only proves itself once it shows up in the room, in the hands of the person actually trying to close something.</p>
+    <p class="framing reveal" style="transition-delay:80ms">Marketing content only proves itself once it shows up in the room, in the hands of the person actually trying to close something.</p>
   </div>
 </header>
 
@@ -418,8 +489,8 @@
       <div class="rule"></div>
       <span class="mono">The Problem</span>
     </div>
-    <h2>Positioning is easy to write. Showing up is the hard part.</h2>
-    <p class="lead">Messaging and strategy are easy to leave in a slide deck. The harder problem is getting that same thinking into the specific moments where an account manager, a rep, or a booth conversation actually needs it, built for that moment instead of repurposed from something else.</p>
+    <h2 class="reveal">Positioning is easy to write. Showing up is the hard part.</h2>
+    <p class="lead reveal" style="transition-delay:70ms">Messaging and strategy are easy to leave in a slide deck. The harder problem is getting that same thinking into the specific moments where an account manager, a rep, or a booth conversation actually needs it, built for that moment instead of repurposed from something else.</p>
   </div>
 </section>
 
@@ -430,26 +501,26 @@
       <div class="rule"></div>
       <span class="mono">What I Did</span>
     </div>
-    <h2>Four ways strategy reached the floor.</h2>
-    <p class="lead">Different accounts, different formats, same test: did this actually make it into the room it was built for.</p>
+    <h2 class="reveal">Four ways strategy reached the floor.</h2>
+    <p class="lead reveal" style="transition-delay:70ms">Different accounts, different formats, same test: did this actually make it into the room it was built for.</p>
 
     <div class="scope-grid">
-      <div class="scope-item">
+      <div class="scope-item annotate reveal" style="transition-delay:0ms">
         <span class="num mono">01</span>
         <h3>Account-Specific Enablement</h3>
         <p>Worked directly with the account manager, property managers, and internal marketing and branding teams for Quore's largest account to build content using their branding and their own operational templates. Led a writer and a designer through scripts and assets for that account's internal marketplace ads, conference ads, and product demos.</p>
       </div>
-      <div class="scope-item">
+      <div class="scope-item annotate reveal" style="transition-delay:70ms">
         <span class="num mono">02</span>
         <h3>Protocol-Specific Training</h3>
         <p>Produced refresh training walking hotel managers through that same account's own cleaning and inspection protocols, built to match how the product was actually used at their properties rather than a generic walkthrough.</p>
       </div>
-      <div class="scope-item">
+      <div class="scope-item annotate reveal" style="transition-delay:140ms">
         <span class="num mono">03</span>
         <h3>Trade Show Presence</h3>
         <p>Designed a 10 by 20 foot booth for HITEC 2023 in Toronto, built around a stat panel of customer proof points and messaging tied to the product's core categories, and handled on-site staging myself.</p>
       </div>
-      <div class="scope-item">
+      <div class="scope-item annotate reveal" style="transition-delay:210ms">
         <span class="num mono">04</span>
         <h3>Audience-Specific Activation</h3>
         <p>Took the persona campaign built for Systems and cut audience-specific versions for individual trade shows and partner associations, so the same underlying message could run correctly tailored in front of different audiences without being rebuilt each time.</p>
@@ -465,11 +536,11 @@
       <div class="rule"></div>
       <span class="mono">Selected Work</span>
     </div>
-    <h2>Where the strategy actually showed up.</h2>
-    <p class="lead">One piece, told in full, backed by the booth it was designed alongside and a look at it in use.</p>
+    <h2 class="reveal">Where the strategy actually showed up.</h2>
+    <p class="lead reveal" style="transition-delay:70ms">One piece, told in full, backed by the booth it was designed alongside and a look at it in use.</p>
 
     <div class="media-grid">
-      <div class="video-embed">
+      <div class="video-embed reveal">
         <iframe src="https://www.youtube.com/embed/5fFdXGPa3-M" title="IHG UK Ad" loading="lazy" allowfullscreen></iframe>
       </div>
     </div>
@@ -477,16 +548,16 @@
     <p class="caption">// IHG UK Ad</p>
 
     <div class="media-grid" style="margin-top:20px;">
-      <div class="media-slot filled">
+      <div class="media-slot filled reveal" style="transition-delay:0ms">
         <img src="../assets/images/scale/hitec-booth.jpg" alt="3D render of the 10 by 20 foot HITEC 2023 booth design, Concept 002, featuring the Toronto skyline motif and a stat panel of customer proof points" loading="lazy">
       </div>
-      <div class="insta-slot">
+      <div class="insta-slot annotate reveal" style="transition-delay:90ms">
         <blockquote class="instagram-media" data-instgrm-permalink="https://www.instagram.com/reel/DLS3SvoydOJ/" data-instgrm-version="14"></blockquote>
       </div>
     </div>
     <script async src="//www.instagram.com/embed.js"></script>
     <p class="caption">// HITEC 2023 booth design (concept render, one of three), and the finished booth in use, captured and posted to Instagram</p>
-    <p class="proof-note">Also part of this account's work: refresh training built around IHG's own "Way of Clean" and "Way of Inspections" protocols, an audience-specific trade show loop cut for the AAHOA hotel owners' association, and the Cleanings Plus launch ad tying creative directly to a paid feature release. The persona campaign built for <a href="systems.html">Systems</a> was also pulled into IHG-facing trade show use under a different cut, and became the best-performing video on the channel.</p>
+    <p class="proof-note reveal">Also part of this account's work: refresh training built around IHG's own "Way of Clean" and "Way of Inspections" protocols, an audience-specific trade show loop cut for the AAHOA hotel owners' association, and the Cleanings Plus launch ad tying creative directly to a paid feature release. The persona campaign built for <a href="systems.html">Systems</a> was also pulled into IHG-facing trade show use under a different cut, and became the best-performing video on the channel.</p>
   </div>
 </section>
 
@@ -497,12 +568,12 @@
       <div class="rule"></div>
       <span class="mono">Reflection</span>
     </div>
-    <p>Good enablement content doesn't sit in a folder. It shows up in the rep's hand at the moment they need it, tailored to the account they're standing in front of.</p>
+    <p class="reveal">Good enablement content doesn't sit in a folder. It shows up in the rep's hand at the moment they need it, tailored to the account they're standing in front of.</p>
   </div>
 </section>
 
 <section class="next-band">
-  <div class="wrap">
+  <div class="wrap reveal">
     <span class="eyebrow mono">Next</span>
     <div class="next-row">
       <h2>That's the full set, for now.</h2>
@@ -519,6 +590,59 @@
     <span class="mono">&copy; 2026 Joe Canter</span>
   </div>
 </footer>
+
+<script>
+  (function(){
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var revealEls = document.querySelectorAll('.reveal, .divider');
+
+    if(reduce || !('IntersectionObserver' in window)){
+      revealEls.forEach(function(el){ el.classList.add('is-visible'); });
+    } else {
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+      revealEls.forEach(function(el){ io.observe(el); });
+    }
+
+    // Touch/no-hover devices: reveal the corner-tick annotation once on
+    // scroll instead of requiring a hover that can't happen.
+    var noHover = window.matchMedia('(hover: none)').matches;
+    if(noHover){
+      var marks = document.querySelectorAll('.annotate');
+      if(reduce || !('IntersectionObserver' in window)){
+        marks.forEach(function(el){ el.classList.add('is-annotated'); });
+      } else {
+        var io2 = new IntersectionObserver(function(entries){
+          entries.forEach(function(entry){
+            if(entry.isIntersecting){
+              entry.target.classList.add('is-annotated');
+              io2.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.5 });
+        marks.forEach(function(el){ io2.observe(el); });
+      }
+    }
+
+    // Above-the-fold draw-in accents (case header underline, if present).
+    var accents = document.querySelectorAll('.case-accent');
+    if(accents.length && !reduce){
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){
+          accents.forEach(function(el){ el.classList.add('is-drawn'); });
+        });
+      });
+    } else if(accents.length){
+      accents.forEach(function(el){ el.classList.add('is-drawn'); });
+    }
+  })();
+</script>
 
 </body>
 </html>

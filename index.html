@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script>document.documentElement.classList.add('js');</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Joe Canter — Content Strategy</title>
 <meta name="description" content="Joe Canter is a content strategist for B2B companies with complex or technical products, helping SaaS, industrial, and technical teams turn what they do into content sales and customers can actually use.">
@@ -567,6 +568,73 @@
       text-align:center;
     }
   }
+
+  /* ---------- MOTION: hero schematic staging ---------- */
+  @keyframes fadeIn{ from{ opacity:0; } }
+  .sketch-corners{ opacity:0.5; animation:fadeIn 0.5s ease 0s forwards; }
+  .sketch-shapes{ opacity:0.55; animation:fadeIn 0.6s ease 0.15s forwards; }
+  .sketch-dots{ opacity:0.75; animation:fadeIn 0.5s ease 1.9s forwards; }
+  .sketch-labels{ opacity:0.8; animation:fadeIn 0.55s ease 0.5s forwards; }
+  .resolve-dot{ opacity:1; animation:fadeIn 0.4s ease 2.5s forwards; }
+  @media (prefers-reduced-motion: reduce){
+    .sketch-corners, .sketch-shapes, .sketch-dots, .sketch-labels, .resolve-dot{ animation:none; }
+  }
+
+  /* ---------- MOTION: scroll reveal ---------- */
+  .reveal{ transition:opacity 0.6s ease, transform 0.6s ease; }
+  .js .reveal{ opacity:0; transform:translateY(18px); }
+  .js .reveal.is-visible{ opacity:1; transform:translateY(0); }
+
+  .js .divider .rule{ transform:scaleX(0); transform-origin:left; transition:transform 0.6s ease; }
+  .js .divider .tick{ opacity:0; transition:opacity 0.3s ease; }
+  .js .divider span.mono{ opacity:0; transition:opacity 0.35s ease; }
+  .js .divider.is-visible .rule{ transform:scaleX(1); }
+  .js .divider.is-visible .tick{ opacity:1; transition-delay:0.45s; }
+  .js .divider.is-visible span.mono{ opacity:1; transition-delay:0.55s; }
+
+  /* corner annotation: hover on desktop, one-time reveal on touch/scroll */
+  .annotate{ position:relative; }
+  .annotate::before, .annotate::after{
+    content:'';
+    position:absolute;
+    width:10px; height:10px;
+    opacity:0;
+    transition:opacity 0.25s ease, transform 0.25s ease;
+    pointer-events:none;
+  }
+  .annotate::before{
+    top:-4px; left:-4px;
+    border-top:1.5px solid var(--amber);
+    border-left:1.5px solid var(--amber);
+    transform:translate(3px,3px);
+  }
+  .annotate::after{
+    bottom:-4px; right:-4px;
+    border-bottom:1.5px solid var(--amber);
+    border-right:1.5px solid var(--amber);
+    transform:translate(-3px,-3px);
+  }
+  .annotate:hover::before, .annotate:hover::after,
+  .annotate.is-annotated::before, .annotate.is-annotated::after{
+    opacity:1;
+    transform:translate(0,0);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .reveal, .divider .rule, .divider .tick, .divider span.mono, .annotate::before, .annotate::after{
+      transition:none !important;
+    }
+    .js .reveal{ opacity:1 !important; transform:none !important; }
+  }
+
+  /* ---------- MOTION: cross-page view transitions ---------- */
+  @view-transition{ navigation: auto; }
+  nav{ view-transition-name: site-nav; }
+  @media (prefers-reduced-motion: reduce){
+    ::view-transition-group(*), ::view-transition-old(*), ::view-transition-new(*){
+      animation:none !important;
+    }
+  }
 </style>
 </head>
 <body>
@@ -595,13 +663,15 @@
       <div class="schematic-box" aria-hidden="true">
         <svg viewBox="0 0 480 480">
           <!-- corner ticks -->
-          <path d="M8 30 V8 H30" stroke="#2C5A82" stroke-width="1" fill="none" opacity="0.5"/>
-          <path d="M450 8 H472 V30" stroke="#2C5A82" stroke-width="1" fill="none" opacity="0.5"/>
-          <path d="M472 450 V472 H450" stroke="#2C5A82" stroke-width="1" fill="none" opacity="0.5"/>
-          <path d="M30 472 H8 V450" stroke="#2C5A82" stroke-width="1" fill="none" opacity="0.5"/>
+          <g class="sketch-corners">
+            <path d="M8 30 V8 H30" stroke="#2C5A82" stroke-width="1" fill="none"/>
+            <path d="M450 8 H472 V30" stroke="#2C5A82" stroke-width="1" fill="none"/>
+            <path d="M472 450 V472 H450" stroke="#2C5A82" stroke-width="1" fill="none"/>
+            <path d="M30 472 H8 V450" stroke="#2C5A82" stroke-width="1" fill="none"/>
+          </g>
 
           <!-- noisy blueprint grid / complexity -->
-          <g stroke="#2C5A82" fill="none" opacity="0.55">
+          <g class="sketch-shapes" stroke="#2C5A82" fill="none">
             <rect x="40" y="60" width="140" height="90" stroke-dasharray="4 3"/>
             <rect x="120" y="130" width="100" height="70" stroke-dasharray="4 3"/>
             <rect x="60" y="180" width="70" height="120" stroke-dasharray="4 3"/>
@@ -616,14 +686,14 @@
             <path d="M40 360 h140" stroke-dasharray="2 4"/>
           </g>
 
-          <g fill="#2C5A82" opacity="0.75">
+          <g class="sketch-dots" fill="#2C5A82">
             <circle cx="180" cy="150" r="2.5"/>
             <circle cx="220" cy="180" r="2.5"/>
             <circle cx="90" cy="250" r="2.5"/>
             <circle cx="200" cy="90" r="2.5"/>
           </g>
 
-          <g font-family="IBM Plex Mono, monospace" font-size="9" fill="#2C5A82" opacity="0.8">
+          <g class="sketch-labels" font-family="IBM Plex Mono, monospace" font-size="9" fill="#2C5A82">
             <text x="182" y="60">REV.B</text>
             <text x="30" y="185">SPEC-04</text>
             <text x="235" y="65">TOL &#177;0.02</text>
@@ -633,7 +703,7 @@
           <!-- the resolving line: jagged -> smooth, ends near text side -->
           <path class="resolve-line" d="M60 250 L95 230 L80 200 L140 190 L120 150 L200 160 L260 220 Q 340 260 430 240"
             stroke="#E8A33D" stroke-width="2.5" fill="none" stroke-linecap="round"/>
-          <circle cx="430" cy="240" r="4" fill="#E8A33D"/>
+          <circle class="resolve-dot" cx="430" cy="240" r="4" fill="#E8A33D"/>
         </svg>
       </div>
 
@@ -657,25 +727,25 @@
       <div class="rule"></div>
       <span class="mono">Selected Work</span>
     </div>
-    <div class="work-head">
+    <div class="work-head reveal">
       <h2>Three kinds of problems I get hired to solve.</h2>
       <p>Drawn from hospitality SaaS, enterprise technology, and independent client work.</p>
     </div>
 
     <div class="cards">
-      <div class="card">
+      <div class="card annotate reveal" style="transition-delay:0ms">
         <span class="tag mono">[ Translation ]</span>
         <h3>Making technical products make sense</h3>
         <p>Led creative and content work for a hospitality SaaS platform and an enterprise technology provider, turning dense product functionality into stories sales teams could use and customers could actually follow.</p>
         <a href="projects/translation.html" class="view">View case &rarr;</a>
       </div>
-      <div class="card">
+      <div class="card annotate reveal" style="transition-delay:90ms">
         <span class="tag mono">[ Systems ]</span>
         <h3>Brand and content systems built to scale</h3>
         <p>Built repeatable brand frameworks and content templates so creative output stayed consistent across campaigns and teams, rather than depending on one person to hold it all together.</p>
         <a href="projects/systems.html" class="view">View case &rarr;</a>
       </div>
-      <div class="card">
+      <div class="card annotate reveal" style="transition-delay:180ms">
         <span class="tag mono">[ Scale ]</span>
         <h3>From strategy to the sales floor</h3>
         <p>Partnered with sales and marketing leadership to turn positioning and messaging into enablement content reps actually used in real conversations, not decks that sat in a shared drive.</p>
@@ -693,15 +763,15 @@
       <span class="mono">About &amp; Capabilities</span>
     </div>
     <div class="about-grid">
-      <div class="about-photo">
+      <div class="about-photo reveal">
         <img src="assets/images/headshot.jpg" alt="Joe Canter" loading="lazy">
       </div>
-      <div>
+      <div class="reveal" style="transition-delay:80ms">
         <h2>About</h2>
         <p>I help B2B companies with complex or technical products turn what they do into content people can use. That means shaping brand strategy and content systems, then partnering with creative and production to bring the work to life without losing the strategy behind it.</p>
         <p>My background spans hospitality SaaS, enterprise technology, and manufacturing, industries where the product isn't self explanatory and content has to do real translation work before it can do any selling.</p>
       </div>
-      <div class="spec-sheet">
+      <div class="spec-sheet reveal" style="transition-delay:160ms">
         <div class="spec-sheet-head mono">
           <span>Capabilities</span>
           <span>2026</span>
@@ -725,7 +795,7 @@
 </section>
 
 <section class="cta-band" id="contact">
-  <div class="wrap">
+  <div class="wrap reveal">
     <span class="eyebrow mono">Get in touch</span>
     <h2>Let's build something that holds up under scrutiny.</h2>
     <p>Open to in house content marketing roles at B2B companies with complex or technical products.</p>
@@ -771,6 +841,59 @@
       if(links.contains(e.target) || toggle.contains(e.target)) return;
       closeMenu();
     });
+  })();
+</script>
+
+<script>
+  (function(){
+    var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var revealEls = document.querySelectorAll('.reveal, .divider');
+
+    if(reduce || !('IntersectionObserver' in window)){
+      revealEls.forEach(function(el){ el.classList.add('is-visible'); });
+    } else {
+      var io = new IntersectionObserver(function(entries){
+        entries.forEach(function(entry){
+          if(entry.isIntersecting){
+            entry.target.classList.add('is-visible');
+            io.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+      revealEls.forEach(function(el){ io.observe(el); });
+    }
+
+    // Touch/no-hover devices: reveal the corner-tick annotation once on
+    // scroll instead of requiring a hover that can't happen.
+    var noHover = window.matchMedia('(hover: none)').matches;
+    if(noHover){
+      var marks = document.querySelectorAll('.annotate');
+      if(reduce || !('IntersectionObserver' in window)){
+        marks.forEach(function(el){ el.classList.add('is-annotated'); });
+      } else {
+        var io2 = new IntersectionObserver(function(entries){
+          entries.forEach(function(entry){
+            if(entry.isIntersecting){
+              entry.target.classList.add('is-annotated');
+              io2.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.5 });
+        marks.forEach(function(el){ io2.observe(el); });
+      }
+    }
+
+    // Above-the-fold draw-in accents (case header underline, if present).
+    var accents = document.querySelectorAll('.case-accent');
+    if(accents.length && !reduce){
+      requestAnimationFrame(function(){
+        requestAnimationFrame(function(){
+          accents.forEach(function(el){ el.classList.add('is-drawn'); });
+        });
+      });
+    } else if(accents.length){
+      accents.forEach(function(el){ el.classList.add('is-drawn'); });
+    }
   })();
 </script>
 
